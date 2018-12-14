@@ -157,7 +157,7 @@ class Board:
                 yield from pool.map(compute, list(self.find_all_moves()))
 
         result = sorted(moves(), key=lambda x: x[1], reverse=True)[:1]
-        print("Calculated in %.01fs" % (time() - t))
+        print("Calculated in %.3fs" % (time() - t))
         print("piles evaluated: %d" % (self.piles))
         return result
 
