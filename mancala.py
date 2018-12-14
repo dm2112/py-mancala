@@ -8,7 +8,6 @@ from io import StringIO
 
 DEPTH = 5
 DONT_SCORE_ONE = True
-piles = 0
 
 
 def compute(x):
@@ -46,6 +45,7 @@ class Board:
         else:
             self.board = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4]
             self.reversed = False
+            piles = 0
 
     def make_player_move(self, n):
         assert n < 6
