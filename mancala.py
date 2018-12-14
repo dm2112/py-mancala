@@ -17,7 +17,7 @@ def compute(x):
 
 class Board:
     PLAYER_SCORE_HOLDER = 7
-    self.piles = 0
+    piles = 0
 
     def __str__(self, *args, **kwargs):
         return str(self.board)
