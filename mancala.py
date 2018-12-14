@@ -94,6 +94,7 @@ class Board:
     def find_all_moves(self):
         all_moves = []
         for i in self.possible_player_moves():
+            self.piles += 1
             self.get_player_moves(i, [], all_moves)
 
         return all_moves
@@ -128,7 +129,6 @@ class Board:
 
     def mini_max_alpha_beta(self, depth=2, alpha=-999, beta=+999, maximizing_player=False):
         if depth == 0 or self.no_more_moves():
-            print(self.piles)
             return self.get_heurestic_score()
 
         if maximizing_player:
@@ -136,7 +136,6 @@ class Board:
             for move, board in self.get_opponent_board().find_all_moves():
                 best_value = max(best_value, board.mini_max_alpha_beta(depth - 1, alpha, beta, not maximizing_player))
                 alpha = max(alpha, best_value)
-                self.piles += 1
                 if beta <= alpha:
                     break
             return best_value
@@ -145,7 +144,6 @@ class Board:
             for move, board in self.get_opponent_board().find_all_moves():
                 best_value = min(best_value, board.mini_max_alpha_beta(depth - 1, alpha,beta, not maximizing_player))
                 beta = min(beta, best_value)
-                self.piles += 1
                 if beta <= alpha:
                     break
             return best_value
@@ -160,6 +158,7 @@ class Board:
 
         result = sorted(moves(), key=lambda x: x[1], reverse=True)[:1]
         print("Calculated in %.1fs" % (time() - t))
+        print("piles evaluated: %d" % (self.piles))
         return result
 
     def print(self):
