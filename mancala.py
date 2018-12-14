@@ -8,6 +8,7 @@ from io import StringIO
 
 DEPTH = 5
 DONT_SCORE_ONE = True
+piles = 0
 
 
 def compute(x):
