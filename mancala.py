@@ -12,7 +12,7 @@ DONT_SCORE_ONE = True
 
 def compute(x):
     move_sequence, board = x
-    return [x + 1 for x in move_sequence], board.mini_max(DEPTH)
+    return [x + 1 for x in move_sequence], board.mini_max_alpha_beta(DEPTH)
 
 
 class Board:
@@ -131,7 +131,7 @@ class Board:
         if maximizing_player:
             best_value = -999
             for move, board in self.get_opponent_board().find_all_moves():
-                best_value = max(best_value, board.mini_max(depth - 1, alpha, beta, not maximizing_player))
+                best_value = max(best_value, board.mini_max_alpha_beta(depth - 1, alpha, beta, not maximizing_player))
                 alpha = max(alpha, best_value)
                 if beta <= alpha:
                     break
@@ -139,7 +139,7 @@ class Board:
         else:
             best_value = 999
             for move, board in self.get_opponent_board().find_all_moves():
-                best_value = min(best_value, board.mini_max(depth - 1, not maximizing_player))
+                best_value = min(best_value, board.mini_max_alpha_beta(depth - 1, alpha,beta, not maximizing_player))
                 beta = min(beta, best_value)
                 if beta <= alpha:
                     break
