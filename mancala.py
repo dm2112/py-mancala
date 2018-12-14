@@ -17,6 +17,7 @@ def compute(x):
 
 class Board:
     PLAYER_SCORE_HOLDER = 7
+    self.piles = 0
 
     def __str__(self, *args, **kwargs):
         return str(self.board)
@@ -45,7 +46,7 @@ class Board:
         else:
             self.board = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4]
             self.reversed = False
-            self.piles = 0
+     
 
     def make_player_move(self, n):
         assert n < 6
